@@ -1,0 +1,98 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "일회용 컵 대신 텀블러를 쓰면\n얼마나 플라스틱을 줄일 수 있을까?",
+      "options": [
+        {
+          "id": "a",
+          "text": "연간 365개",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "연간 730개",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "연간 100개",
+          "correct": false
+        }
+      ],
+      "explanation": "하루 2개씩만 줄여도 연간 730개의 플라스틱 컵을 아낄 수 있어요! 🌱"
+    },
+    {
+      "id": 2,
+      "question": "더그린랩 제품의 주요 원료는?",
+      "options": [
+        {
+          "id": "a",
+          "text": "폐플라스틱 & 천연 추출물",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "합성 화학물질",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "동물성 원료",
+          "correct": false
+        }
+      ],
+      "explanation": "맞아요! 폐플라스틱을 재활용하고 천연 추출물로 만든 친환경 제품이에요 ✨"
+    },
+    {
+      "id": 3,
+      "question": "샤워 시간을 1분만 줄이면\n물을 얼마나 아낄 수 있을까?",
+      "options": [
+        {
+          "id": "a",
+          "text": "약 10L",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "약 1L",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "약 50L",
+          "correct": false
+        }
+      ],
+      "explanation": "작은 습관이 모이면 큰 변화가 돼요! 1분만 줄여도 연간 3,650L를 아낄 수 있어요 💧"
+    }
+  ],
+  "tiers": [
+    {
+      "minScore": 0,
+      "maxScore": 1,
+      "name": "새싹 습관러",
+      "emoji": "🌿",
+      "message": "시작이 반이에요! 작은 습관부터 시작해볼까요?"
+    },
+    {
+      "minScore": 2,
+      "maxScore": 2,
+      "name": "지구친구",
+      "emoji": "🌱",
+      "message": "좋아요! 환경을 생각하는 마음이 느껴져요!"
+    },
+    {
+      "minScore": 3,
+      "maxScore": 3,
+      "name": "에코 마스터",
+      "emoji": "🌳",
+      "message": "완벽해요! 당신은 진짜 환경 지킴이예요!"
+    }
+  ],
+  "coupon": {
+    "code": "GREEN2024",
+    "discount": "10%",
+    "description": "전 상품 10% 할인 쿠폰"
+  }
+}

@@ -1,65 +1,95 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import IntroPage from "./components/IntroPage";
+import QuizPage from "./components/QuizPage";
+import ResultPage from "./components/ResultPage";
+import quizData from "@/data/quiz.json";
+import { trackQuizComplete, trackDropoff } from "@/lib/tracking";
+
+type Page = "intro" | "quiz" | "result";
 
 export default function Home() {
+  const [currentPage, setCurrentPage] = useState<Page>("intro");
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [answers, setAnswers] = useState<boolean[]>([]);
+
+  // 이탈 추적
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (currentPage === "quiz") {
+        trackDropoff("quiz", quizData.questions[currentQuestionIndex]?.id);
+      } else if (currentPage === "intro") {
+        trackDropoff("intro");
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [currentPage, currentQuestionIndex]);
+
+  const handleStart = () => {
+    setCurrentPage("quiz");
+    setCurrentQuestionIndex(0);
+    setScore(0);
+    setAnswers([]);
+  };
+
+  const handleAnswer = (isCorrect: boolean) => {
+    const newAnswers = [...answers, isCorrect];
+    setAnswers(newAnswers);
+    const newScore = isCorrect ? score + 1 : score;
+    setScore(newScore);
+
+    // 다음 질문으로 이동 (즉시)
+    if (currentQuestionIndex < quizData.questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      // 퀴즈 완료
+      const finalScore = newScore;
+      const tier = quizData.tiers.find(
+        (t) =>
+          finalScore >= t.minScore && finalScore <= t.maxScore
+      ) || quizData.tiers[0];
+
+      trackQuizComplete(finalScore, tier.name);
+      setCurrentPage("result");
+    }
+  };
+
+  const getCurrentTier = () => {
+    return (
+      quizData.tiers.find(
+        (t) => score >= t.minScore && score <= t.maxScore
+      ) || quizData.tiers[0]
+    );
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div
+      style={{
+        minHeight: "100dvh",
+        backgroundColor: "#A3D47F",
+        background: "#A3D47F",
+      }}
+    >
+      {currentPage === "intro" && <IntroPage onStart={handleStart} />}
+      {currentPage === "quiz" && (
+        <QuizPage
+          question={quizData.questions[currentQuestionIndex]}
+          currentIndex={currentQuestionIndex + 1}
+          totalQuestions={quizData.questions.length}
+          onAnswer={handleAnswer}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      )}
+      {currentPage === "result" && (
+        <ResultPage
+          score={score}
+          tier={getCurrentTier()}
+          couponCode={quizData.coupon.code}
+        />
+      )}
     </div>
   );
 }

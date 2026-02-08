@@ -88,6 +88,8 @@ export default function Home() {
           score={score}
           tier={getCurrentTier()}
           couponCode={quizData.coupon.code}
+          couponDiscount={quizData.coupon.discount}
+          couponDescription={quizData.coupon.description}
         />
       )}
     </div>

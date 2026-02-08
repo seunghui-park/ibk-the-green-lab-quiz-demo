@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import Button from "@/components/Button";
-import Card from "@/components/Card";
-import { trackCouponCopy, trackShopClick, trackShareClick } from "@/lib/tracking";
+import {
+  trackCouponCopy,
+  trackShopClick,
+  trackShareClick,
+} from "@/lib/tracking";
 
 interface Tier {
   name: string;
@@ -15,12 +18,16 @@ interface ResultPageProps {
   score: number;
   tier: Tier;
   couponCode: string;
+  couponDiscount?: string;
+  couponDescription?: string;
 }
 
 export default function ResultPage({
   score,
   tier,
   couponCode,
+  couponDiscount = "10%",
+  couponDescription = "전 상품 할인 쿠폰",
 }: ResultPageProps) {
   const [copied, setCopied] = useState(false);
 
@@ -110,50 +117,214 @@ export default function ResultPage({
             marginTop: "var(--space-md)",
           }}
         >
-          작은 습관이 모이면 진짜 바뀜!
+          A Bit Of Habits ㅣ 환경을 위한 작은 습관
         </p>
       </div>
 
-      {/* 쿠폰 카드 */}
-      <Card
+      {/* 기프트카드 스타일 쿠폰 */}
+      <div
         style={{
-          marginBottom: "var(--space-lg)",
-          textAlign: "center",
-          background: "linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-accent) 100%)",
+          marginBottom: "var(--space-xl)",
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
+        {/* 봉투 느낌의 바깥 컨테이너 */}
         <div
           style={{
-            fontSize: "var(--font-size-caption)",
-            color: "var(--color-text-secondary)",
-            marginBottom: "var(--space-sm)",
+            width: "100%",
+            maxWidth: "320px",
+            padding: "var(--space-lg)",
+            paddingBottom: "var(--space-xl)",
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            borderRadius: "24px",
+            boxShadow:
+              "0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08)",
+            position: "relative",
+            overflow: "visible",
           }}
         >
-          쿠폰 겟! 🎁
+          {/* 장식용 컨페티 */}
+          <div
+            style={{
+              position: "absolute",
+              top: "-8px",
+              right: "20px",
+              fontSize: "20px",
+              opacity: 0.8,
+            }}
+          >
+            🎉
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              top: "10px",
+              left: "16px",
+              fontSize: "16px",
+              opacity: 0.7,
+            }}
+          >
+            ✨
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              bottom: "40px",
+              right: "24px",
+              fontSize: "18px",
+              opacity: 0.7,
+            }}
+          >
+            🌿
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              bottom: "30px",
+              left: "20px",
+              fontSize: "14px",
+              opacity: 0.6,
+            }}
+          >
+            🎁
+          </div>
+
+          {/* 그린 기프트카드 (안쪽 카드) */}
+          <div
+            style={{
+              width: "100%",
+              backgroundColor: "var(--color-primary)",
+              borderRadius: "18px",
+              padding: "var(--space-xl)",
+              paddingTop: "var(--space-lg)",
+              paddingBottom: "var(--space-lg)",
+              boxShadow:
+                "0 6px 20px rgba(30, 127, 79, 0.35), inset 0 1px 0 rgba(255,255,255,0.2)",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* 카드 위 패턴 (은은한 흰색 웨이브) */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                opacity: 0.12,
+                backgroundImage:
+                  "repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(255,255,255,0.4) 8px, rgba(255,255,255,0.4) 10px)",
+                borderRadius: "18px",
+                pointerEvents: "none",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                top: "-20px",
+                right: "-20px",
+                width: "80px",
+                height: "80px",
+                borderRadius: "50%",
+                backgroundColor: "rgba(255,255,255,0.08)",
+                pointerEvents: "none",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                bottom: "-10px",
+                left: "-10px",
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                backgroundColor: "rgba(255,255,255,0.06)",
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* 카드 텍스트 */}
+            <div
+              style={{ position: "relative", zIndex: 1, textAlign: "center" }}
+            >
+              <div
+                style={{
+                  fontSize: "var(--font-size-caption)",
+                  color: "rgba(255, 255, 255, 0.95)",
+                  marginBottom: "var(--space-sm)",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                더그린랩
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  justifyContent: "center",
+                  gap: "6px",
+                  marginBottom: "var(--space-sm)",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "28px",
+                    fontWeight: 700,
+                    color: "#FFFFFF",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {couponDiscount}
+                </span>
+                <span
+                  style={{
+                    fontSize: "var(--font-size-body)",
+                    color: "rgba(255, 255, 255, 0.9)",
+                  }}
+                >
+                  할인
+                </span>
+              </div>
+              <div
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  color: "#FFFFFF",
+                  fontFamily: "monospace",
+                  letterSpacing: "3px",
+                  marginTop: "var(--space-md)",
+                }}
+              >
+                {couponCode}
+              </div>
+              <p
+                style={{
+                  fontSize: "12px",
+                  color: "rgba(255, 255, 255, 0.8)",
+                  marginTop: "var(--space-sm)",
+                  lineHeight: 1.4,
+                }}
+              >
+                {couponDescription}
+              </p>
+            </div>
+          </div>
         </div>
-        <div
-          style={{
-            fontSize: "32px",
-            fontWeight: "var(--font-weight-bold)",
-            color: "var(--color-primary)",
-            marginBottom: "var(--space-md)",
-            fontFamily: "monospace",
-            letterSpacing: "2px",
-          }}
-        >
-          {couponCode}
-        </div>
+
         <Button
           variant="primary"
           size="md"
           onClick={handleCopyCoupon}
           style={{
             width: "100%",
+            maxWidth: "320px",
+            marginTop: "var(--space-lg)",
           }}
         >
           {copied ? "복사 완료! 이제 쇼핑하러 가자 🛒" : "쿠폰 복사하기"}
         </Button>
-      </Card>
+      </div>
 
       {/* 공유 버튼 */}
       <Button
@@ -177,7 +348,7 @@ export default function ResultPage({
           width: "100%",
         }}
       >
-        더그린랩 보러가기 🛍️
+        더그린랩 바로가기 🛍️
       </Button>
 
       <style jsx>{`

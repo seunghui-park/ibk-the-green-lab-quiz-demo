@@ -2,69 +2,54 @@
   "questions": [
     {
       "id": 1,
-      "question": "일회용 컵 대신 텀블러를 쓰면\n얼마나 플라스틱을 줄일 수 있을까?",
+      "question": "더그린랩의 제품은 무엇으로 만들어질까요?",
       "options": [
         {
           "id": "a",
-          "text": "연간 365개",
-          "correct": false
-        },
-        {
-          "id": "b",
-          "text": "연간 730개",
+          "text": "버려진 폐플라스틱과 사탕수수 등 친환경 소재",
           "correct": true
         },
         {
-          "id": "c",
-          "text": "연간 100개",
+          "id": "b",
+          "text": "일반적인 석유계 화학 섬유",
           "correct": false
         }
       ],
-      "explanation": "하루 2개씩만 줄여도 연간 730개의 플라스틱 컵을 아낄 수 있어요! 🌱"
+      "explanation": "더그린랩은 폐플라스틱, 천연 추출물을 활용한 친환경 원단과 데드스탁을 활용해요 🌱"
     },
     {
       "id": 2,
-      "question": "더그린랩 제품의 주요 원료는?",
+      "question": "더그린랩의 브랜드 슬로건 'A Bit Of Habits'는 무엇을 의미할까요?",
       "options": [
         {
           "id": "a",
-          "text": "폐플라스틱 & 천연 추출물",
+          "text": "'환경을 위한 작은 습관'",
           "correct": true
         },
         {
           "id": "b",
-          "text": "합성 화학물질",
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": "동물성 원료",
+          "text": "최신 유행을 빠르게 따르는 습관",
           "correct": false
         }
       ],
-      "explanation": "맞아요! 폐플라스틱을 재활용하고 천연 추출물로 만든 친환경 제품이에요 ✨"
+      "explanation": "맞아요! 환경을 위한 작은 습관, 더그린랩과 함께해요 ✨"
     },
     {
       "id": 3,
-      "question": "샤워 시간을 1분만 줄이면\n물을 얼마나 아낄 수 있을까?",
+      "question": "더그린랩의 패키징(택, 포장지)에 대한 설명으로 옳은 것은?",
       "options": [
         {
           "id": "a",
-          "text": "약 10L",
+          "text": "100% 사탕수수 종이와 생분해성 원료를 사용한다.",
           "correct": true
         },
         {
           "id": "b",
-          "text": "약 1L",
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": "약 50L",
+          "text": "예쁜 디자인을 위해 비닐 코팅을 많이 사용한다.",
           "correct": false
         }
       ],
-      "explanation": "작은 습관이 모이면 큰 변화가 돼요! 1분만 줄여도 연간 3,650L를 아낄 수 있어요 💧"
+      "explanation": "작은 습관이 모이면 큰 변화가 돼요! 더그린랩은 패키징까지 신경쓰고 있어요 🌱"
     }
   ],
   "tiers": [

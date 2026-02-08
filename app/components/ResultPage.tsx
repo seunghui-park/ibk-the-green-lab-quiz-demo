@@ -11,7 +11,6 @@ import {
 interface Tier {
   name: string;
   emoji: string;
-  message: string;
 }
 
 interface ResultPageProps {
@@ -100,15 +99,6 @@ export default function ResultPage({
         >
           {tier.name}
         </h1>
-        <p
-          style={{
-            fontSize: "var(--font-size-body)",
-            color: "var(--color-text-secondary)",
-            marginBottom: "var(--space-lg)",
-          }}
-        >
-          {tier.message}
-        </p>
         <p
           style={{
             fontSize: "var(--font-size-subtitle)",

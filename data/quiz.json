@@ -13,11 +13,6 @@
           "id": "b",
           "text": "연간 730개",
           "correct": true
-        },
-        {
-          "id": "c",
-          "text": "연간 100개",
-          "correct": false
         }
       ],
       "explanation": "하루 2개씩만 줄여도 연간 730개의 플라스틱 컵을 아낄 수 있어요! 🌱"
@@ -34,11 +29,6 @@
         {
           "id": "b",
           "text": "합성 화학물질",
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": "동물성 원료",
           "correct": false
         }
       ],
@@ -57,11 +47,6 @@
           "id": "b",
           "text": "약 1L",
           "correct": false
-        },
-        {
-          "id": "c",
-          "text": "약 50L",
-          "correct": false
         }
       ],
       "explanation": "작은 습관이 모이면 큰 변화가 돼요! 1분만 줄여도 연간 3,650L를 아낄 수 있어요 💧"
@@ -72,22 +57,19 @@
       "minScore": 0,
       "maxScore": 1,
       "name": "새싹 습관러",
-      "emoji": "🌿",
-      "message": "시작이 반이에요! 작은 습관부터 시작해볼까요?"
+      "emoji": "🌿"
     },
     {
       "minScore": 2,
       "maxScore": 2,
       "name": "지구친구",
-      "emoji": "🌱",
-      "message": "좋아요! 환경을 생각하는 마음이 느껴져요!"
+      "emoji": "🌱"
     },
     {
       "minScore": 3,
       "maxScore": 3,
       "name": "에코 마스터",
-      "emoji": "🌳",
-      "message": "완벽해요! 당신은 진짜 환경 지킴이예요!"
+      "emoji": "🌳"
     }
   ],
   "coupon": {
